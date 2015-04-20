@@ -5,7 +5,6 @@
 #include "EventManager.hpp"
 #include "LogManager.hpp"
 #include "RendererManager.hpp"
-#include "GameKeyboard.hpp"
 
 namespace rpg
 {
@@ -37,8 +36,6 @@ private:
     EventManager    mEventManager;
     LogManager      mLogManager;
     RendererManager mRendererManager;
-
-    GameKeyboard mKeyboard;
 
     bool mRunning;
     int  mExitStatus;

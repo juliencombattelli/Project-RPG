@@ -18,7 +18,7 @@ CarreRouge::~CarreRouge()
 
 void CarreRouge::handleEvent(sf::Event& event)
 {
-    if(mApp->mKeyboard::isKeyPressed(sf::Keyboard::P))
+    if(sf::isKeyPressed(sf::Keyboard::P))
     {
         mEvent.createState(StateID::MENU);
         LOGE(SeverityInfo, "State <MENU> created");
