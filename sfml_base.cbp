@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="sfml_base" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/sfml_base" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-Wnon-virtual-dtor" />
+					<Add option="-Winit-self" />
+					<Add option="-Wredundant-decls" />
+					<Add option="-Wcast-align" />
+					<Add option="-Wfloat-equal" />
+					<Add option="-Winline" />
+					<Add option="-Wunreachable-code" />
+					<Add option="-Wmissing-declarations" />
+					<Add option="-Wmissing-include-dirs" />
+					<Add option="-Wswitch-enum" />
+					<Add option="-Wswitch-default" />
+					<Add option="-Wmain" />
+					<Add option="-pedantic-errors" />
+					<Add option="-pedantic" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-pg" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg -lgmon" />
+					<Add library="sfml-graphics-d" />
+					<Add library="sfml-window-d" />
+					<Add library="sfml-system-d" />
+					<Add library="sfml-network-d" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/sfml_base" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O3" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
+					<Add library="sfml-network" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add directory="SFML-2.1-windows-gcc-4.7-tdm-32bits/SFML-2.1/include" />
+			<Add directory="boost_1_57_0" />
+		</Compiler>
+		<Linker>
+			<Add library="mingw32" />
+			<Add library="user32" />
+			<Add library="gdi32" />
+			<Add library="winmm" />
+			<Add library="dxguid" />
+			<Add directory="SFML-2.1-windows-gcc-4.7-tdm-32bits/SFML-2.1/lib" />
+		</Linker>
+		<Unit filename="Application.cpp" />
+		<Unit filename="Application.hpp" />
+		<Unit filename="CarreRouge.cpp" />
+		<Unit filename="CarreRouge.hpp" />
+		<Unit filename="Event.cpp" />
+		<Unit filename="Event.hpp" />
+		<Unit filename="EventManager.cpp" />
+		<Unit filename="EventManager.hpp" />
+		<Unit filename="FileLogger.cpp" />
+		<Unit filename="FileLogger.hpp" />
+		<Unit filename="GameKeyMap.cpp" />
+		<Unit filename="GameKeyMap.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="GameKeyStateManager.cpp" />
+		<Unit filename="GameKeyStateManager.hpp" />
+		<Unit filename="GameKeyboard.cpp" />
+		<Unit filename="GameKeyboard.hpp" />
+		<Unit filename="Global.hpp" />
+		<Unit filename="LogMacro.hpp" />
+		<Unit filename="LogManager.cpp" />
+		<Unit filename="LogManager.hpp" />
+		<Unit filename="Menu.cpp" />
+		<Unit filename="Menu.hpp" />
+		<Unit filename="RendererManager.cpp" />
+		<Unit filename="RendererManager.hpp" />
+		<Unit filename="State.cpp" />
+		<Unit filename="State.hpp" />
+		<Unit filename="StateEvent.cpp" />
+		<Unit filename="StateEvent.hpp" />
+		<Unit filename="StateManager.cpp" />
+		<Unit filename="StateManager.hpp" />
+		<Unit filename="Type.hpp" />
+		<Unit filename="main.cpp" />
+		<Unit filename="onullstream.inl" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="4" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
