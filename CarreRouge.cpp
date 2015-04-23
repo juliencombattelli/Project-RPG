@@ -75,6 +75,8 @@ void CarreRouge::update(float elapsedTime)
                 mRectangle.move( 0,-mSpeed*elapsedTime);
         }
         break;
+
+        default: break;
     }
 }
 
