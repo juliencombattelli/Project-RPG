@@ -4,6 +4,9 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <string>
 
+namespace rpg
+{
+
 struct MapData
 {
     std::string textureName;
@@ -27,5 +30,9 @@ public:
     */
     const MapData& getData(void) const {return m_mapdata;}
 };
+
+}
+
+
 
 #endif //TILE_LOADER_INCLUDED

@@ -5,6 +5,9 @@
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
+namespace rpg
+{
+
 class Animation
 {
 public:
@@ -20,5 +23,9 @@ private:
     std::vector<sf::IntRect> m_frames;
     const sf::Texture* m_texture;
 };
+
+}
+
+
 
 #endif // ANIMATION_INCLUDE

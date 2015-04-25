@@ -6,6 +6,9 @@
 #include <SFML/Graphics/VertexArray.hpp>
 #include <vector>
 
+namespace rpg
+{
+
 class TileLoader;
 
 class StaticTiledMap : public sf::Drawable
@@ -21,5 +24,8 @@ public:
     virtual ~StaticTiledMap(void){};
     void LoadFrom(TileLoader* gloader);
 };
+
+}
+
 
 #endif //STATIC_TILED_MAP_INCLUDED

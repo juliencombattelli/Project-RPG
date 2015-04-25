@@ -1,12 +1,12 @@
 #include "AnimatedSprite.hpp"
 
-AnimatedSprite::AnimatedSprite(sf::Time frameTime, bool paused, bool looped) :
+rpg::AnimatedSprite::AnimatedSprite(sf::Time frameTime, bool paused, bool looped) :
     m_animation(NULL), m_frameTime(frameTime), m_currentFrame(0), m_isPaused(paused), m_isLooped(looped), m_texture(NULL)
 {
 
 }
 
-void AnimatedSprite::setAnimation(const Animation& animation)
+void rpg::AnimatedSprite::setAnimation(const Animation& animation)
 {
     m_animation = &animation;
     m_texture = m_animation->getSpriteSheet();
@@ -14,41 +14,41 @@ void AnimatedSprite::setAnimation(const Animation& animation)
     setFrame(m_currentFrame);
 }
 
-void AnimatedSprite::setFrameTime(sf::Time time)
+void rpg::AnimatedSprite::setFrameTime(sf::Time time)
 {
     m_frameTime = time;
 }
 
-void AnimatedSprite::play()
+void rpg::AnimatedSprite::play()
 {
     m_isPaused = false;
 }
 
-void AnimatedSprite::play(const Animation& animation)
+void rpg::AnimatedSprite::play(const Animation& animation)
 {
     if (getAnimation() != &animation)
         setAnimation(animation);
     play();
 }
 
-void AnimatedSprite::pause()
+void rpg::AnimatedSprite::pause()
 {
     m_isPaused = true;
 }
 
-void AnimatedSprite::stop()
+void rpg::AnimatedSprite::stop()
 {
     m_isPaused = true;
     m_currentFrame = 0;
     setFrame(m_currentFrame);
 }
 
-void AnimatedSprite::setLooped(bool looped)
+void rpg::AnimatedSprite::setLooped(bool looped)
 {
     m_isLooped = looped;
 }
 
-void AnimatedSprite::setColor(const sf::Color& color)
+void rpg::AnimatedSprite::setColor(const sf::Color& color)
 {
     // Update the vertices' color
     m_vertices[0].color = color;
@@ -57,12 +57,12 @@ void AnimatedSprite::setColor(const sf::Color& color)
     m_vertices[3].color = color;
 }
 
-const Animation* AnimatedSprite::getAnimation() const
+const rpg::Animation* rpg::AnimatedSprite::getAnimation() const
 {
     return m_animation;
 }
 
-sf::FloatRect AnimatedSprite::getLocalBounds() const
+sf::FloatRect rpg::AnimatedSprite::getLocalBounds() const
 {
     sf::IntRect rect = m_animation->getFrame(m_currentFrame);
 
@@ -72,27 +72,27 @@ sf::FloatRect AnimatedSprite::getLocalBounds() const
     return sf::FloatRect(0.f, 0.f, width, height);
 }
 
-sf::FloatRect AnimatedSprite::getGlobalBounds() const
+sf::FloatRect rpg::AnimatedSprite::getGlobalBounds() const
 {
     return getTransform().transformRect(getLocalBounds());
 }
 
-bool AnimatedSprite::isLooped() const
+bool rpg::AnimatedSprite::isLooped() const
 {
     return m_isLooped;
 }
 
-bool AnimatedSprite::isPlaying() const
+bool rpg::AnimatedSprite::isPlaying() const
 {
     return !m_isPaused;
 }
 
-sf::Time AnimatedSprite::getFrameTime() const
+sf::Time rpg::AnimatedSprite::getFrameTime() const
 {
     return m_frameTime;
 }
 
-void AnimatedSprite::setFrame(std::size_t newFrame, bool resetTime)
+void rpg::AnimatedSprite::setFrame(std::size_t newFrame, bool resetTime)
 {
     if (m_animation)
     {
@@ -119,7 +119,7 @@ void AnimatedSprite::setFrame(std::size_t newFrame, bool resetTime)
         m_currentTime = sf::Time::Zero;
 }
 
-void AnimatedSprite::update(sf::Time deltaTime)
+void rpg::AnimatedSprite::update(sf::Time deltaTime)
 {
     // if not paused and we have a valid animation
     if (!m_isPaused && m_animation)
@@ -154,7 +154,7 @@ void AnimatedSprite::update(sf::Time deltaTime)
     }
 }
 
-void AnimatedSprite::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void rpg::AnimatedSprite::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     if (m_animation && m_texture)
     {

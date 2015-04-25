@@ -3,7 +3,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/System/Vector2.hpp>
 
-void StaticTiledMap::draw(sf::RenderTarget& target,sf::RenderStates states)const
+void rpg::StaticTiledMap::draw(sf::RenderTarget& target,sf::RenderStates states)const
 {
 
     int left=0,right=0,top=0,bottom=0;
@@ -29,12 +29,13 @@ void StaticTiledMap::draw(sf::RenderTarget& target,sf::RenderStates states)const
         }
     }
 }
-StaticTiledMap::StaticTiledMap(void):
+
+rpg::StaticTiledMap::StaticTiledMap(void):
 map_x(0),map_y(0),chunks_x(0),chunks_y(0)
 {
 
 }
-void StaticTiledMap::LoadFrom(TileLoader* gloader)
+void rpg::StaticTiledMap::LoadFrom(TileLoader* gloader)
 {
     m_texture.loadFromFile(gloader->getData().textureName);
     map_x=gloader->getData().sizeX;
