@@ -1,7 +1,10 @@
 #include "HerosSprite.hpp"
 
-rpg::HerosSprite::HerosSprite(sf::Texture& texture) :
-    AnimatedSprite(), mTexture(texture), mSpeed(80), mRunning(false), mAsMoved(false), mMovement(0.0f,0.0f)
+const float rpg::HerosSprite::DEFAULT_SPEED = 80;
+
+rpg::HerosSprite::HerosSprite(sf::Texture& texture, sf::View& view, bool scrollingEnable) :
+    AnimatedSprite(), mView(view), mTexture(texture), mScrollingEnable(scrollingEnable),
+    mSpeed(DEFAULT_SPEED), mRunning(false), mAsMoved(false), mMovement(0.0f,0.0f)
 {
     mWalkingAnimationDown.setSpriteSheet(texture);
     mWalkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));
@@ -33,16 +36,21 @@ rpg::HerosSprite::HerosSprite(sf::Texture& texture) :
 void rpg::HerosSprite::animate(float elapsedTime)
 {
     if (not mAsMoved)
-    {
         stop();
-    }
+
     mAsMoved = false;
 
     play(*mCurrentAnimation);
+
     move(mMovement * elapsedTime);
+
+    mView.move(mMovement * elapsedTime);
+
     if(mRunning == true)
         elapsedTime *= 2;
+
     update(sf::seconds(elapsedTime));
+
     mMovement.x = 0;
     mMovement.y = 0;
 }
@@ -50,19 +58,20 @@ void rpg::HerosSprite::animate(float elapsedTime)
 void rpg::HerosSprite::run()
 {
     mRunning = true;
-    mSpeed *= 2;
+    mSpeed = DEFAULT_SPEED*2;
 }
 
 void rpg::HerosSprite::walk()
 {
     mRunning = false;
-    mSpeed *= 0.5;
+    mSpeed = DEFAULT_SPEED;
 }
 
 void rpg::HerosSprite::moveRight()
 {
     mCurrentAnimation = &mWalkingAnimationRight;
     mMovement.x += mSpeed;
+    if(mScrollingEnable)
     mAsMoved = true;
 }
 

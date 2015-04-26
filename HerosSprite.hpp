@@ -9,7 +9,7 @@ namespace rpg
 class HerosSprite : public AnimatedSprite
 {
 public:
-    HerosSprite(sf::Texture& texture);
+    HerosSprite(sf::Texture& texture, sf::View& view, bool scrollingEnable = true);
 
     void animate(float elapsedTime);
     void run();
@@ -21,7 +21,12 @@ public:
 
 protected:
 
+    static const float DEFAULT_SPEED;
+
     sf::Texture& mTexture;
+    sf::View& mView;
+
+    bool mScrollingEnable;
 
     float mSpeed;
     bool mRunning;

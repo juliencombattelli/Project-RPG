@@ -11,7 +11,6 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option use_console_runner="0" />
 				<Compiler>
 					<Add option="-Wnon-virtual-dtor" />
 					<Add option="-Winit-self" />
@@ -69,6 +68,14 @@
 			<Add library="dxguid" />
 			<Add directory="SFML-2.1-windows-gcc-4.7-tdm-32bits/SFML-2.1/lib" />
 		</Linker>
+		<Unit filename="AnimatedSprite.cpp" />
+		<Unit filename="AnimatedSprite.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Animation.cpp" />
+		<Unit filename="Animation.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="Application.cpp" />
 		<Unit filename="Application.hpp" />
 		<Unit filename="CarreRouge.cpp" />
@@ -88,6 +95,10 @@
 		<Unit filename="GameKeyboard.cpp" />
 		<Unit filename="GameKeyboard.hpp" />
 		<Unit filename="Global.hpp" />
+		<Unit filename="HerosSprite.cpp" />
+		<Unit filename="HerosSprite.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="LogMacro.hpp" />
 		<Unit filename="LogManager.cpp" />
 		<Unit filename="LogManager.hpp" />
@@ -101,6 +112,11 @@
 		<Unit filename="StateEvent.hpp" />
 		<Unit filename="StateManager.cpp" />
 		<Unit filename="StateManager.hpp" />
+		<Unit filename="StaticTiledMap.cpp" />
+		<Unit filename="StaticTiledMap.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="TileLoader.hpp" />
 		<Unit filename="Type.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="onullstream.inl" />

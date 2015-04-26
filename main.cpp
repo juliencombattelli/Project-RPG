@@ -2,16 +2,52 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Animated Sprite test
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
 #include <SFML/Graphics.hpp>
-#include "HerosSprite.hpp"
 #include <iostream>
+#include "HerosSprite.hpp"
+#include "TileLoader.hpp"
+#include "StaticTiledMap.hpp"
+
+namespace rpg
+{
+
+class ExampleLoader : public rpg::TileLoader
+{
+public:
+    ExampleLoader(void)
+    {
+        m_mapdata.sizeX=100;
+        m_mapdata.sizeY=100;
+        m_mapdata.textureName="ressource/picture/World.png";//a simple 32x32 seamless image of brick
+    }
+    virtual void appendTile(int gx,int gy,sf::VertexArray& garr)
+    {
+        sf::Vertex ver;
+        ver.position=sf::Vector2f(gx*32.f,gy*32.f);
+        ver.texCoords=sf::Vector2f(0.f,0.f);
+        garr.append(ver);
+
+        ver.position=sf::Vector2f(gx*32.f+32.f,gy*32.f);
+        ver.texCoords=sf::Vector2f(32.f,0.f);
+        garr.append(ver);
+
+        ver.position=sf::Vector2f(gx*32.f+32.f,gy*32.f+32.f);
+        ver.texCoords=sf::Vector2f(32.f,32.f);
+        garr.append(ver);
+
+        ver.position=sf::Vector2f(gx*32.f,gy*32.f+32.f);
+        ver.texCoords=sf::Vector2f(0.f,32.f);
+        garr.append(ver);
+    }
+};
+
+}
 
 int main()
 {
     sf::Vector2i screenDimensions(800,600);
     sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Animations!");
-    window.setFramerateLimit(60);
+    window.setVerticalSyncEnabled(true);
 
     sf::Texture texture;
     if (!texture.loadFromFile("ressource/picture/Heros1.png"))
@@ -20,7 +56,13 @@ int main()
         return 1;
     }
 
-    rpg::HerosSprite heros(texture);
+    sf::View view(sf::FloatRect(0, 0, 800, 600));
+
+    rpg::HerosSprite heros(texture, view);
+
+    rpg::StaticTiledMap testmap;
+    rpg::ExampleLoader example;
+    testmap.LoadFrom(&example);
 
     sf::Clock frameClock;
 
@@ -35,8 +77,13 @@ int main()
                 window.close();
         }
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+            heros.run();
+        else
+            heros.walk();
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-            heros.moveUp();
+             heros.moveUp();
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
             heros.moveDown();
@@ -52,6 +99,8 @@ int main()
         heros.animate(frameTime.asSeconds());
 
         window.clear();
+        window.setView(view);
+        window.draw(testmap);
         window.draw(heros);
         window.display();
     }
