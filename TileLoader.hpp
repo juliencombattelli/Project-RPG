@@ -11,6 +11,8 @@ struct MapData
 {
     std::string textureName;
     int sizeX,sizeY;
+    int sizeX_pix() const { return sizeX*32; }
+    int sizeY_pix() const { return sizeY*32; }
     MapData():sizeX(0),sizeY(0){}
 };
 

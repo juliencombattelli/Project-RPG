@@ -17,12 +17,13 @@ public:
     ExampleLoader(void)
     {
         m_mapdata.sizeX=100;
-        m_mapdata.sizeY=100;
-        m_mapdata.textureName="ressource/picture/World.png";//a simple 32x32 seamless image of brick
+        m_mapdata.sizeY=15;
+        m_mapdata.textureName="ressource/picture/World.png";
     }
     virtual void appendTile(int gx,int gy,sf::VertexArray& garr)
     {
         sf::Vertex ver;
+
         ver.position=sf::Vector2f(gx*32.f,gy*32.f);
         ver.texCoords=sf::Vector2f(0.f,0.f);
         garr.append(ver);
@@ -45,7 +46,7 @@ public:
 
 int main()
 {
-    sf::Vector2i screenDimensions(800,600);
+    sf::Vector2f screenDimensions(800,600);
     sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Animations!");
     window.setVerticalSyncEnabled(true);
 
@@ -56,13 +57,19 @@ int main()
         return 1;
     }
 
-    sf::View view(sf::FloatRect(0, 0, 800, 600));
-
-    rpg::HerosSprite heros(texture, view);
+    sf::View view;
 
     rpg::StaticTiledMap testmap;
     rpg::ExampleLoader example;
     testmap.LoadFrom(&example);
+
+    rpg::HerosSprite heros(texture, view, example);
+
+    view.setSize(screenDimensions);
+    view.setCenter(heros.getPosition().x+16, heros.getPosition().y+16);
+    view.setViewport(sf::FloatRect(0,0,1.0f, 1.0f));
+
+
 
     sf::Clock frameClock;
 
