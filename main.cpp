@@ -69,8 +69,6 @@ int main()
     view.setCenter(heros.getPosition().x+16, heros.getPosition().y+16);
     view.setViewport(sf::FloatRect(0,0,1.0f, 1.0f));
 
-
-
     sf::Clock frameClock;
 
     while (window.isOpen())

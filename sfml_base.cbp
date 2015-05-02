@@ -26,6 +26,7 @@
 					<Add option="-Wmain" />
 					<Add option="-pedantic-errors" />
 					<Add option="-pedantic" />
+					<Add option="-std=c++11" />
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
 					<Add option="-pg" />
@@ -46,6 +47,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O3" />
+					<Add option="-std=c++11" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -117,9 +119,16 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="TileLoader.hpp" />
+		<Unit filename="TileMap.cpp" />
+		<Unit filename="TileMap.hpp" />
+		<Unit filename="TileMapDrawer.cpp" />
+		<Unit filename="TileMapDrawer.hpp" />
 		<Unit filename="Type.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="onullstream.inl" />
+		<Unit filename="utilities.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />
