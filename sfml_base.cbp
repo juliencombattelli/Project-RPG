@@ -57,6 +57,45 @@
 					<Add library="sfml-network" />
 				</Linker>
 			</Target>
+			<Target title="Debug OpenGL">
+				<Option output="bin/Debug_OpenGL/sfml_base" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug_OpenGL/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wnon-virtual-dtor" />
+					<Add option="-Winit-self" />
+					<Add option="-Wredundant-decls" />
+					<Add option="-Wcast-align" />
+					<Add option="-Wfloat-equal" />
+					<Add option="-Winline" />
+					<Add option="-Wunreachable-code" />
+					<Add option="-Wmissing-declarations" />
+					<Add option="-Wmissing-include-dirs" />
+					<Add option="-Wswitch-enum" />
+					<Add option="-Wswitch-default" />
+					<Add option="-Wmain" />
+					<Add option="-pedantic-errors" />
+					<Add option="-pedantic" />
+					<Add option="-std=c++11" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-pg" />
+					<Add option="-g" />
+					<Add option="-DUSE_OPENGL" />
+					<Add option="-DGLEW_STATIC" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg -lgmon" />
+					<Add library="sfml-graphics-d" />
+					<Add library="sfml-window-d" />
+					<Add library="sfml-system-d" />
+					<Add library="sfml-network-d" />
+					<Add library="libglew32s" />
+					<Add library="libglu32" />
+					<Add library="opengl32" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add directory="SFML-2.1-windows-gcc-4.7-tdm-32bits/SFML-2.1/include" />
@@ -68,6 +107,10 @@
 			<Add library="gdi32" />
 			<Add library="winmm" />
 			<Add library="dxguid" />
+			<Add library="Ws2_32" />
+			<Add library="libglew32s" />
+			<Add library="libglu32" />
+			<Add library="opengl32" />
 			<Add directory="SFML-2.1-windows-gcc-4.7-tdm-32bits/SFML-2.1/lib" />
 		</Linker>
 		<Unit filename="AnimatedSprite.cpp" />
@@ -79,53 +122,115 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="Application.cpp" />
-		<Unit filename="Application.hpp" />
+		<Unit filename="Application.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="CarreRouge.cpp" />
-		<Unit filename="CarreRouge.hpp" />
+		<Unit filename="CarreRouge.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="Event.cpp" />
-		<Unit filename="Event.hpp" />
+		<Unit filename="Event.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="EventManager.cpp" />
-		<Unit filename="EventManager.hpp" />
+		<Unit filename="EventManager.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="FileLogger.cpp" />
-		<Unit filename="FileLogger.hpp" />
+		<Unit filename="FileLogger.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="GameKeyMap.cpp" />
 		<Unit filename="GameKeyMap.hpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="GameKeyStateManager.cpp" />
-		<Unit filename="GameKeyStateManager.hpp" />
+		<Unit filename="GameKeyStateManager.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="GameKeyboard.cpp" />
-		<Unit filename="GameKeyboard.hpp" />
-		<Unit filename="Global.hpp" />
+		<Unit filename="GameKeyboard.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="Global.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="HerosSprite.cpp" />
 		<Unit filename="HerosSprite.hpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="LogMacro.hpp" />
+		<Unit filename="LogMacro.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="LogManager.cpp" />
-		<Unit filename="LogManager.hpp" />
+		<Unit filename="LogManager.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="Menu.cpp" />
-		<Unit filename="Menu.hpp" />
+		<Unit filename="Menu.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="RendererManager.cpp" />
-		<Unit filename="RendererManager.hpp" />
+		<Unit filename="RendererManager.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="State.cpp" />
-		<Unit filename="State.hpp" />
+		<Unit filename="State.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="StateEvent.cpp" />
-		<Unit filename="StateEvent.hpp" />
+		<Unit filename="StateEvent.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="StateManager.cpp" />
-		<Unit filename="StateManager.hpp" />
+		<Unit filename="StateManager.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="StaticTiledMap.cpp" />
 		<Unit filename="StaticTiledMap.hpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="TileLoader.hpp" />
+		<Unit filename="TileLoader.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="TileMap.cpp" />
-		<Unit filename="TileMap.hpp" />
+		<Unit filename="TileMap.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="TileMapDrawer.cpp" />
-		<Unit filename="TileMapDrawer.hpp" />
-		<Unit filename="Type.hpp" />
+		<Unit filename="TileMapDrawer.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="Type.hpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="ibfstream.cpp" />
+		<Unit filename="ibfstream.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="main.cpp" />
 		<Unit filename="onullstream.inl" />
+		<Unit filename="utilities.cpp" />
 		<Unit filename="utilities.hpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>

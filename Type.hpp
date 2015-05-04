@@ -30,13 +30,14 @@ enum StateID
 
 enum StatusType
 {
-    StatusAppMissingAsset   = -4,  ///< Application failed due to missing asset file
-    StatusAppStackEmpty     = -3,  ///< Application States stack is empty
-    StatusAppInitFailed     = -2,  ///< Application initialization failed
-    StatusError             = -1,  ///< General error status response
-    StatusNoError           =  0,  ///< General no error status response
-    StatusAppOK             =  0,  ///< Application quit without error
-    StatusOK                =  1   ///< OK status response
+    StatusOpenGLInitFailed = -5,  ///< OpenGL initialization failed
+    StatusAppMissingAsset  = -4,  ///< Application failed due to missing asset file
+    StatusAppStackEmpty    = -3,  ///< Application States stack is empty
+    StatusAppInitFailed    = -2,  ///< Application initialization failed
+    StatusError            = -1,  ///< General error status response
+    StatusNoError          =  0,  ///< General no error status response
+    StatusAppOK            =  0,  ///< Application quit without error
+    StatusOK               =  1   ///< OK status response
 };
 
 enum SeverityType

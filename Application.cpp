@@ -1,6 +1,15 @@
 #include "Application.hpp"
 #include "State.hpp"
 
+#ifdef USE_OPENGL
+#include <GL/glew.h>
+#include <GL/wglew.h>
+#include <GL/gl.h>
+#include <GL/glext.h>
+#include <GL/glu.h>
+#include <SFML/OpenGL.hpp>
+#endif // USE_OPENGL
+
 namespace rpg
 {
 
@@ -113,11 +122,11 @@ void Application::gameLoop()
 
         state.update(frameClock.restart().asSeconds());
 
-        mRendererManager.getWindow().clear(sf::Color::Black);
+        mRendererManager.clear();
 
         state.draw();
 
-        mRendererManager.getWindow().display();
+        mRendererManager.display();
     }
 }
 

@@ -2,56 +2,28 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Animated Sprite test
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#include <GL/glew.h>
+#include <GL/wglew.h>
+#include <GL/gl.h>
+#include <GL/glext.h>
+#include <GL/glu.h>
+
 #include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
 #include <iostream>
+#include "Global.hpp"
 #include "HerosSprite.hpp"
-#include "TileLoader.hpp"
-#include "StaticTiledMap.hpp"
-
-namespace rpg
-{
-
-class ExampleLoader : public rpg::TileLoader
-{
-public:
-    ExampleLoader(void)
-    {
-        m_mapdata.sizeX=100;
-        m_mapdata.sizeY=15;
-        m_mapdata.textureName="ressource/picture/World.png";
-    }
-    virtual void appendTile(int gx,int gy,sf::VertexArray& garr)
-    {
-        sf::Vertex ver;
-
-        ver.position=sf::Vector2f(gx*32.f,gy*32.f);
-        ver.texCoords=sf::Vector2f(0.f,0.f);
-        garr.append(ver);
-
-        ver.position=sf::Vector2f(gx*32.f+32.f,gy*32.f);
-        ver.texCoords=sf::Vector2f(32.f,0.f);
-        garr.append(ver);
-
-        ver.position=sf::Vector2f(gx*32.f+32.f,gy*32.f+32.f);
-        ver.texCoords=sf::Vector2f(32.f,32.f);
-        garr.append(ver);
-
-        ver.position=sf::Vector2f(gx*32.f,gy*32.f+32.f);
-        ver.texCoords=sf::Vector2f(0.f,32.f);
-        garr.append(ver);
-    }
-};
-
-}
+#include "TileMapDrawer.hpp"
 
 int main()
 {
     sf::Vector2f screenDimensions(800,600);
     sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Animations!");
-    window.setVerticalSyncEnabled(true);
+    window.setFramerateLimit(100);
+    //window.setVerticalSyncEnabled(true);
 
     sf::Texture texture;
-    if (!texture.loadFromFile("ressource/picture/Heros1.png"))
+    if (!texture.loadFromFile(pictureFolder+"Heros1"+pictureExt))
     {
         std::cout << "Failed to load player spritesheet!" << std::endl;
         return 1;
@@ -59,15 +31,38 @@ int main()
 
     sf::View view;
 
-    rpg::StaticTiledMap testmap;
-    rpg::ExampleLoader example;
-    testmap.LoadFrom(&example);
+    rpg::TileMapDrawer tileMap;
+    tileMap.load("WorldMap");
 
-    rpg::HerosSprite heros(texture, view, example);
+    rpg::HerosSprite heros(texture, view, tileMap);
 
     view.setSize(screenDimensions);
     view.setCenter(heros.getPosition().x+16, heros.getPosition().y+16);
     view.setViewport(sf::FloatRect(0,0,1.0f, 1.0f));
+
+    GLenum err = glewInit();
+    if(err != GLEW_OK)
+    {
+        std::cerr << "Error Initializing application! Exiting." << std::endl;
+        return 0;
+    }
+    glEnable(GL_TEXTURE_2D);
+
+    //Output OpenGL stats
+    std::cout << "OPENGL: " << std::endl;
+    std::cout << " VERSION: " << glGetString(GL_VERSION) << std::endl;
+    std::cout << " VENDOR: " << glGetString(GL_VENDOR) << std::endl;
+    std::cout << " RENDERER: " << glGetString(GL_RENDERER) << std::endl << std::endl;
+
+    //Check OpenGL Context Settings
+    sf::ContextSettings context = window.getSettings();
+    std::cout << "OpenGL Context: " << std::endl;
+    std::cout << " GL_Version: " << context.majorVersion << "." << context.minorVersion << std::endl;
+    std::cout << " Depth Bits: " << context.depthBits << std::endl;
+    std::cout << " Stencil Bits " << context.stencilBits << std::endl;
+    std::cout << " Anti-aliasing: " << context.antialiasingLevel << std::endl << std::endl;
+
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
     sf::Clock frameClock;
 
@@ -80,6 +75,8 @@ int main()
                 window.close();
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
                 window.close();
+            if (event.type == sf::Event::Resized)
+                glViewport(0, 0, event.size.width, event.size.height);
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
@@ -103,10 +100,13 @@ int main()
         sf::Time frameTime = frameClock.restart();
         heros.animate(frameTime.asSeconds());
 
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
         window.clear();
         window.setView(view);
-        window.draw(testmap);
+        window.draw(tileMap);
         window.draw(heros);
+
         window.display();
     }
 
@@ -134,7 +134,7 @@ public:
     {
         m_mapdata.sizeX=100;
         m_mapdata.sizeY=100;
-        m_mapdata.textureName="ressource/picture/World.png";//a simple 32x32 seamless image of brick
+        m_mapdata.textureName=pictureFolder+"World"+pictureExt;//a simple 32x32 seamless image of brick
     }
     virtual void appendTile(int gx,int gy,sf::VertexArray& garr)
     {

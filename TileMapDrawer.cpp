@@ -37,8 +37,8 @@ bool rpg::TileMapDrawer::load(const std::string& mapName)
             uint32_t tileNumber = static_cast<uint32_t>(tilesLayer1[i + j * width]);
 
             // on en déduit sa position dans la texture du tileset
-            uint32_t tu = tileNumber % (tileset.getSize().x / tileSize);
-            uint32_t tv = tileNumber / (tileset.getSize().x / tileSize);
+            uint32_t tu = tileNumber % width;
+            uint32_t tv = tileNumber / width;
 
             // on récupère un pointeur vers le quad à définir dans le tableau de vertex
             sf::Vertex* quad = &mVertices[(i + j * width) * 4];
@@ -61,12 +61,9 @@ bool rpg::TileMapDrawer::load(const std::string& mapName)
 
 void rpg::TileMapDrawer::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    // on applique la transformation
     states.transform *= getTransform();
 
-    // on applique la texture du tileset
     states.texture = &mTileMap.getTileset();
 
-    // et on dessine enfin le tableau de vertex
     target.draw(mVertices, states);
 }

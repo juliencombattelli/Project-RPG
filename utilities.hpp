@@ -1,20 +1,21 @@
 #ifndef UTILITIES_HPP_INCLUDED
 #define UTILITIES_HPP_INCLUDED
 
-std::string cstr2string(uint8_t* cstr, size_t beginIterator, size_t stringLenght)
+#include <string>
+#include "ibfstream.hpp"
+
+namespace utility
 {
-    std::string returnedString("");
-    size_t iterator;
 
-    for(iterator = beginIterator; iterator < (stringLenght+beginIterator); ++iterator) // end of string detection
-        if(cstr[iterator]==0x00)
-            break;
+std::string readString(const uint8_t buffer[], size_t position, size_t maxStringLength);
+uint8_t     read1Byte(const uint8_t buffer[], size_t position);
+uint16_t    read2Byte(const uint8_t buffer[], size_t position);
+uint32_t    read4Byte(const uint8_t buffer[], size_t position);
+uint64_t    read8Byte(const uint8_t buffer[], size_t position);
 
-    size_t stringSize = iterator-beginIterator;
-
-    returnedString.assign( &(cstr[beginIterator]), stringSize);
-
-    return returnedString;
 }
+
+
+
 
 #endif // UTILITIES_HPP_INCLUDED

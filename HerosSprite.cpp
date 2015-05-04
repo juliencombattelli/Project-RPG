@@ -1,10 +1,10 @@
 #include "HerosSprite.hpp"
-#include "TileLoader.hpp"
+#include "TileMapDrawer.hpp"
 
 const float rpg::HerosSprite::DEFAULT_SPEED = 100;
 const float rpg::HerosSprite::DEFAULT_RUN_FACTOR = 3;
 
-rpg::HerosSprite::HerosSprite(sf::Texture& texture, sf::View& view, rpg::TileLoader& tileMap) :
+rpg::HerosSprite::HerosSprite(sf::Texture& texture, sf::View& view, rpg::TileMapDrawer& tileMap) :
     AnimatedSprite(), mTexture(texture), mView(view), mTileMap(tileMap),
     mSpeed(DEFAULT_SPEED), mWalkSpeed(DEFAULT_SPEED), mRunFactor(DEFAULT_RUN_FACTOR),
     mRunning(false), mAsMoved(false), mMovement(0.0f,0.0f)
@@ -106,21 +106,21 @@ void rpg::HerosSprite::updateView()
 {
     sf::Vector2f position;
 
-    if(mView.getSize().x > mTileMap.getData().sizeX_pix())
-        position.x = mTileMap.getData().sizeX_pix()/2;
+    if(mView.getSize().x > mTileMap.getSizeX_pix())
+        position.x = mTileMap.getSizeX_pix()/2;
     else if(getPosition().x + 16 < mView.getSize().x/2)
         position.x = mView.getSize().x/2;
-    else if(getPosition().x + 16 > mTileMap.getData().sizeX_pix() - mView.getSize().x/2)
-        position.x = mTileMap.getData().sizeX_pix() - mView.getSize().x/2;
+    else if(getPosition().x + 16 > mTileMap.getSizeX_pix() - mView.getSize().x/2)
+        position.x = mTileMap.getSizeX_pix() - mView.getSize().x/2;
     else
         position.x = getPosition().x + 16;
 
-    if(mView.getSize().y > mTileMap.getData().sizeY_pix())
-        position.y = mTileMap.getData().sizeY_pix()/2;
+    if(mView.getSize().y > mTileMap.getSizeY_pix())
+        position.y = mTileMap.getSizeY_pix()/2;
     else if(getPosition().y + 16 < mView.getSize().y/2)
         position.y = mView.getSize().y/2;
-    else if(getPosition().y + 16 > mTileMap.getData().sizeY_pix() - mView.getSize().y/2)
-        position.y = mTileMap.getData().sizeY_pix() - mView.getSize().y/2;
+    else if(getPosition().y + 16 > mTileMap.getSizeY_pix() - mView.getSize().y/2)
+        position.y = mTileMap.getSizeY_pix() - mView.getSize().y/2;
     else
         position.y = getPosition().y + 16;
 

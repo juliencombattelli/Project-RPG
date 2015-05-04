@@ -6,12 +6,12 @@
 namespace rpg
 {
 
-class TileLoader;
+class TileMapDrawer;
 
 class HerosSprite : public AnimatedSprite
 {
 public:
-    HerosSprite(sf::Texture& texture, sf::View& view, rpg::TileLoader& tileMap);
+    HerosSprite(sf::Texture& texture, sf::View& view, rpg::TileMapDrawer& tileMap);
 
     void animate(float elapsedTime);
     void run();
@@ -28,7 +28,7 @@ protected:
 
     sf::Texture& mTexture;
     sf::View& mView;
-    rpg::TileLoader& mTileMap;
+    rpg::TileMapDrawer& mTileMap;
 
     float mSpeed;
     float mWalkSpeed;

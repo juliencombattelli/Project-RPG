@@ -28,7 +28,11 @@ public:
     RendererManager& operator=(const RendererManager&) = delete;
     ~RendererManager();
 
-    void init() {}
+    void init();
+
+    void clear();
+    void draw(const sf::Drawable & object);
+    void display();
 
     sf::RenderWindow& getWindow() { return mWindow; }
 
