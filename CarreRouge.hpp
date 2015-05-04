@@ -2,7 +2,6 @@
 #define CARREROUGE_HPP_INCLUDED
 
 #include "State.hpp"
-#include "GameKeyboard.hpp"
 
 namespace rpg
 {

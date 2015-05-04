@@ -44,7 +44,7 @@ protected:
     const sf::Texture* m_texture;
     sf::Vertex m_vertices[4];
 
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 };
 

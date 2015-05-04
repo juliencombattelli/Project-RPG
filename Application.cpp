@@ -1,15 +1,6 @@
 #include "Application.hpp"
 #include "State.hpp"
 
-#ifdef USE_OPENGL
-#include <GL/glew.h>
-#include <GL/wglew.h>
-#include <GL/gl.h>
-#include <GL/glext.h>
-#include <GL/glu.h>
-#include <SFML/OpenGL.hpp>
-#endif // USE_OPENGL
-
 namespace rpg
 {
 
@@ -100,6 +91,7 @@ void Application::handleEvent(State& state)
         else if(event.type == sf::Event::Resized)
         {
             APPLOGE(SeverityInfo) << "Window resized" << std::endl << std::endl;
+            //glViewport(0, 0, event.size.width, event.size.height);
         }
 
         else

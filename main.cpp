@@ -2,14 +2,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Animated Sprite test
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#include <GL/glew.h>
-#include <GL/wglew.h>
-#include <GL/gl.h>
-#include <GL/glext.h>
-#include <GL/glu.h>
-
 #include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
 #include <iostream>
 #include "Global.hpp"
 #include "HerosSprite.hpp"
@@ -20,7 +13,6 @@ int main()
     sf::Vector2f screenDimensions(800,600);
     sf::RenderWindow window(sf::VideoMode(screenDimensions.x, screenDimensions.y), "Animations!");
     window.setFramerateLimit(100);
-    //window.setVerticalSyncEnabled(true);
 
     sf::Texture texture;
     if (!texture.loadFromFile(pictureFolder+"Heros1"+pictureExt))
@@ -40,30 +32,6 @@ int main()
     view.setCenter(heros.getPosition().x+16, heros.getPosition().y+16);
     view.setViewport(sf::FloatRect(0,0,1.0f, 1.0f));
 
-    GLenum err = glewInit();
-    if(err != GLEW_OK)
-    {
-        std::cerr << "Error Initializing application! Exiting." << std::endl;
-        return 0;
-    }
-    glEnable(GL_TEXTURE_2D);
-
-    //Output OpenGL stats
-    std::cout << "OPENGL: " << std::endl;
-    std::cout << " VERSION: " << glGetString(GL_VERSION) << std::endl;
-    std::cout << " VENDOR: " << glGetString(GL_VENDOR) << std::endl;
-    std::cout << " RENDERER: " << glGetString(GL_RENDERER) << std::endl << std::endl;
-
-    //Check OpenGL Context Settings
-    sf::ContextSettings context = window.getSettings();
-    std::cout << "OpenGL Context: " << std::endl;
-    std::cout << " GL_Version: " << context.majorVersion << "." << context.minorVersion << std::endl;
-    std::cout << " Depth Bits: " << context.depthBits << std::endl;
-    std::cout << " Stencil Bits " << context.stencilBits << std::endl;
-    std::cout << " Anti-aliasing: " << context.antialiasingLevel << std::endl << std::endl;
-
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
     sf::Clock frameClock;
 
     while (window.isOpen())
@@ -75,8 +43,6 @@ int main()
                 window.close();
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
                 window.close();
-            if (event.type == sf::Event::Resized)
-                glViewport(0, 0, event.size.width, event.size.height);
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
@@ -99,8 +65,6 @@ int main()
 
         sf::Time frameTime = frameClock.restart();
         heros.animate(frameTime.asSeconds());
-
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         window.clear();
         window.setView(view);

@@ -141,6 +141,10 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="Exploration.cpp" />
+		<Unit filename="Exploration.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="FileLogger.cpp" />
 		<Unit filename="FileLogger.hpp">
 			<Option target="Debug" />

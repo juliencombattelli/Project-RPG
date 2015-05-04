@@ -1,5 +1,6 @@
 #include "CarreRouge.hpp"
 #include "Application.hpp"
+#include "GameKeyboard.hpp"
 #include <SFML/Window/Keyboard.hpp>
 
 namespace rpg
@@ -82,7 +83,7 @@ void CarreRouge::update(float elapsedTime)
 
 void CarreRouge::draw()
 {
-    mApp->getRendererManager().getWindow().draw(mRectangle);
+    mRenderManager.draw(mRectangle);
 }
 
 void CarreRouge::pause()

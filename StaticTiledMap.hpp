@@ -15,7 +15,7 @@ class StaticTiledMap : public sf::Drawable
 {
 private:
     enum {tilesize=32,chunksize=32};//change values of these to match your needs and improve performance
-    virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const;
+    virtual void draw(sf::RenderTarget& target,sf::RenderStates states)const override;
     sf::Texture m_texture;
     int map_x,map_y,chunks_x,chunks_y;//map x and y - dimensions of map in tiles, chunks x and y - amount of chunks
     std::vector<std::vector<sf::VertexArray> > m_chunks;

@@ -10,6 +10,7 @@ namespace rpg
 {
 
 class Application;
+class RendererManager;
 
 class State
 {
@@ -29,6 +30,7 @@ public:
 
 protected:
     Application* mApp;
+    RendererManager& mRenderManager;
 
     StateEvent mEvent;
 };
