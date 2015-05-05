@@ -102,6 +102,11 @@ void RendererManager::clear()
     mWindow.clear(sf::Color::Black);
 }
 
+void RendererManager::setView(const sf::View& view)
+{
+    mWindow.setView(view);
+}
+
 void RendererManager::draw(const sf::Drawable & object)
 {
     mWindow.draw(object);

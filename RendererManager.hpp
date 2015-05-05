@@ -31,6 +31,7 @@ public:
     void init();
 
     void clear();
+    void setView(const sf::View& view);
     void draw(const sf::Drawable & object);
     void display();
 

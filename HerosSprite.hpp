@@ -11,7 +11,9 @@ class TileMapDrawer;
 class HerosSprite : public AnimatedSprite
 {
 public:
-    HerosSprite(sf::Texture& texture, sf::View& view, rpg::TileMapDrawer& tileMap);
+    HerosSprite();
+
+    void init(const sf::Texture& texture);
 
     void animate(float elapsedTime);
     void run();
@@ -25,10 +27,6 @@ protected:
 
     static const float DEFAULT_SPEED;
     static const float DEFAULT_RUN_FACTOR;
-
-    sf::Texture& mTexture;
-    sf::View& mView;
-    rpg::TileMapDrawer& mTileMap;
 
     float mSpeed;
     float mWalkSpeed;
@@ -46,7 +44,6 @@ protected:
     Animation* mCurrentAnimation;
 
     void updateAnimation(float elapsedTime);
-    void updateView();
     void reInit();
 };
 

@@ -2,12 +2,12 @@
 #define STATEMANAGER_HPP_INCLUDED
 
 #include "Type.hpp"
+#include "State.hpp"
 
 namespace rpg
 {
 
 class Application;
-class State;
 
 class StateManager
 {

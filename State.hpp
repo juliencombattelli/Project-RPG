@@ -15,10 +15,14 @@ class RendererManager;
 class State
 {
 public:
+
     State(Application* app);
     State(const State&) = delete;
     State& operator=(const State&) = delete;
     virtual ~State();
+
+    virtual void init() = 0;
+    virtual void cleanup() = 0;
 
     virtual void handleEvent(sf::Event& event) = 0;
     virtual void update(float elapsedTime) = 0;
@@ -26,7 +30,6 @@ public:
 
     virtual void pause() = 0;
     virtual void resume() = 0;
-    virtual void cleanup() = 0;
 
 protected:
     Application* mApp;
@@ -34,6 +37,8 @@ protected:
 
     StateEvent mEvent;
 };
+
+typedef std::unique_ptr<State> uptr_state;
 
 }
 

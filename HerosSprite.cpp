@@ -4,10 +4,15 @@
 const float rpg::HerosSprite::DEFAULT_SPEED = 100;
 const float rpg::HerosSprite::DEFAULT_RUN_FACTOR = 3;
 
-rpg::HerosSprite::HerosSprite(sf::Texture& texture, sf::View& view, rpg::TileMapDrawer& tileMap) :
-    AnimatedSprite(), mTexture(texture), mView(view), mTileMap(tileMap),
+rpg::HerosSprite::HerosSprite() :
+    AnimatedSprite(),
     mSpeed(DEFAULT_SPEED), mWalkSpeed(DEFAULT_SPEED), mRunFactor(DEFAULT_RUN_FACTOR),
     mRunning(false), mAsMoved(false), mMovement(0.0f,0.0f)
+{
+
+}
+
+void rpg::HerosSprite::init(const sf::Texture& texture)
 {
     mWalkingAnimationDown.setSpriteSheet(texture);
     mWalkingAnimationDown.addFrame(sf::IntRect(32, 0, 32, 32));
@@ -39,8 +44,6 @@ rpg::HerosSprite::HerosSprite(sf::Texture& texture, sf::View& view, rpg::TileMap
 void rpg::HerosSprite::animate(float elapsedTime)
 {
     updateAnimation(elapsedTime);
-
-    updateView();
 
     reInit();
 }
@@ -100,32 +103,6 @@ void rpg::HerosSprite::updateAnimation(float elapsedTime)
         elapsedTime *= mRunFactor;
 
     update(sf::seconds(elapsedTime));
-}
-
-void rpg::HerosSprite::updateView()
-{
-    sf::Vector2f position;
-
-    if(mView.getSize().x > mTileMap.getSizeX_pix())
-        position.x = mTileMap.getSizeX_pix()/2;
-    else if(getPosition().x + 16 < mView.getSize().x/2)
-        position.x = mView.getSize().x/2;
-    else if(getPosition().x + 16 > mTileMap.getSizeX_pix() - mView.getSize().x/2)
-        position.x = mTileMap.getSizeX_pix() - mView.getSize().x/2;
-    else
-        position.x = getPosition().x + 16;
-
-    if(mView.getSize().y > mTileMap.getSizeY_pix())
-        position.y = mTileMap.getSizeY_pix()/2;
-    else if(getPosition().y + 16 < mView.getSize().y/2)
-        position.y = mView.getSize().y/2;
-    else if(getPosition().y + 16 > mTileMap.getSizeY_pix() - mView.getSize().y/2)
-        position.y = mTileMap.getSizeY_pix() - mView.getSize().y/2;
-    else
-        position.y = getPosition().y + 16;
-
-
-    mView.setCenter(position);
 }
 
 void rpg::HerosSprite::reInit()

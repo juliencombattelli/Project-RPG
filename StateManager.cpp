@@ -1,6 +1,7 @@
 #include "StateManager.hpp"
 #include "State.hpp"
-#include "CarreRouge.hpp"
+#include "Exploration.hpp"
+#include <memory>
 
 namespace rpg
 {
@@ -17,25 +18,25 @@ StateManager::~StateManager()
 
 void StateManager::init()
 {
-    mStates.push_back(new CarreRouge(mApp));
+    this->pushState(new Exploration(mApp));
 }
 
 void StateManager::cleanup()
 {
     while(not isEmpty())
-    {
-        mStates.back()->cleanup();
-        mStates.pop_back();
-    }
+        popState();
 }
 
 void StateManager::pushState(State* state)
 {
-    mStates.push_back(state);
+    mStates.push_back(state);   // register pointer state
+    mStates.back()->init();     // initialize state
 }
 void StateManager::popState()
 {
-    mStates.pop_back();
+    mStates.back()->cleanup();  // deinit state
+    delete mStates.back();      // delete state
+    mStates.pop_back();         // erase pointer
 }
 
 }

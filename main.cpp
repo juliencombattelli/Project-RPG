@@ -1,4 +1,4 @@
-
+/*
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Animated Sprite test
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,12 +21,12 @@ int main()
         return 1;
     }
 
-    sf::View view;
+    //sf::View view;
 
-    rpg::TileMapDrawer tileMap;
+    //rpg::TileMapDrawer tileMap;
     tileMap.load("WorldMap");
 
-    rpg::HerosSprite heros(texture, view, tileMap);
+    //rpg::HerosSprite heros(texture, view, tileMap);
 
     view.setSize(screenDimensions);
     view.setCenter(heros.getPosition().x+16, heros.getPosition().y+16);
@@ -76,7 +76,7 @@ int main()
 
     return 0;
 }
-
+*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TileMap test
@@ -166,7 +166,7 @@ int main(int argc, char* argv[])
 // RPG main
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*#include <iostream>
+#include <iostream>
 #include "Application.hpp"
 #include "GameKeyStateManager.hpp"
 
@@ -183,4 +183,4 @@ int main()
     app = nullptr;
 
     return exitStatus;
-}*/
+}

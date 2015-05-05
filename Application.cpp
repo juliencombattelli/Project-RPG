@@ -93,10 +93,9 @@ void Application::handleEvent(State& state)
             APPLOGE(SeverityInfo) << "Window resized" << std::endl << std::endl;
             //glViewport(0, 0, event.size.width, event.size.height);
         }
-
-        else
-            state.handleEvent(event);
     }
+
+    state.handleEvent(event);
 }
 
 void Application::gameLoop()
