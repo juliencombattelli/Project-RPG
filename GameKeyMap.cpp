@@ -5,13 +5,13 @@ namespace rpg
 
 GameKeyMap::GameKeyMap()
 {
-    mGameKeysMap[gameKey::pause] = sf::Keyboard::P;
-    mGameKeysMap[gameKey::accept] = sf::Keyboard::Return;
-    mGameKeysMap[gameKey::refuse] = sf::Keyboard::Escape;
-    mGameKeysMap[gameKey::moveUp] = sf::Keyboard::Up;
-    mGameKeysMap[gameKey::moveDown] = sf::Keyboard::Down;
-    mGameKeysMap[gameKey::moveLeft] = sf::Keyboard::Left;
-    mGameKeysMap[gameKey::moveRight] = sf::Keyboard::Right;
+    mKeyAssociation[static_cast<size_t>(GameKey::pause)] = sf::Keyboard::P;
+    mKeyAssociation[static_cast<size_t>(GameKey::accept)] = sf::Keyboard::Return;
+    mKeyAssociation[static_cast<size_t>(GameKey::refuse)] = sf::Keyboard::Escape;
+    mKeyAssociation[static_cast<size_t>(GameKey::moveUp)] = sf::Keyboard::Up;
+    mKeyAssociation[static_cast<size_t>(GameKey::moveDown)] = sf::Keyboard::Down;
+    mKeyAssociation[static_cast<size_t>(GameKey::moveLeft)] = sf::Keyboard::Left;
+    mKeyAssociation[static_cast<size_t>(GameKey::moveRight)] = sf::Keyboard::Right;
 }
 
 GameKeyMap::GameKeyMap(const std::string& fileName)
@@ -24,14 +24,14 @@ GameKeyMap::~GameKeyMap()
 
 }
 
-sf::Keyboard::Key GameKeyMap::operator[](const gameKey& key)
+sf::Keyboard::Key GameKeyMap::operator[](const GameKey& key)
 {
-    return mGameKeysMap[key];
+    return mKeyAssociation[static_cast<size_t>(key)];
 }
 
-void GameKeyMap::setAssociation(const gameKey& gamekey, const sf::Keyboard::Key& key)
+void GameKeyMap::setAssociation(const GameKey& gameKey, const sf::Keyboard::Key& key)
 {
-    mGameKeysMap[gamekey] = key;
+    mKeyAssociation[static_cast<size_t>(gameKey)] = key;
 }
 
 

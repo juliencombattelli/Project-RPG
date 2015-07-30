@@ -4,37 +4,47 @@ namespace rpg
 {
 
 GameKeyboard::GameKeyboard() :
-    mGameKeyMap(),
-    mPauseManager(mGameKeyMap[gameKey::pause]),
-    mAcceptManager(mGameKeyMap[gameKey::accept]),
-	mRefuseManager(mGameKeyMap[gameKey::refuse]),
-	mMoveUpManager(mGameKeyMap[gameKey::moveUp]),
-	mMoveDownManager(mGameKeyMap[gameKey::moveDown]),
-	mMoveLeftManager(mGameKeyMap[gameKey::moveLeft]),
-	mMoveRightManager(mGameKeyMap[gameKey::moveRight])
+    DPad(*this),
+    mGameKeyState{{ new GameKeyState(sf::Keyboard::Pause),
+                    new GameKeyState(sf::Keyboard::Return),
+                    new GameKeyState(sf::Keyboard::Escape),
+                    new GameKeyState(sf::Keyboard::Up),
+                    new GameKeyState(sf::Keyboard::Down),
+                    new GameKeyState(sf::Keyboard::Left),
+                    new GameKeyState(sf::Keyboard::Right) }}
 {
 
 }
 
 GameKeyboard::~GameKeyboard()
 {
-
+    delete mGameKeyState[static_cast<int>(GameKey::pause)];
+    delete mGameKeyState[static_cast<int>(GameKey::accept)];
+    delete mGameKeyState[static_cast<int>(GameKey::refuse)];
+    delete mGameKeyState[static_cast<int>(GameKey::moveUp)];
+    delete mGameKeyState[static_cast<int>(GameKey::moveDown)];
+    delete mGameKeyState[static_cast<int>(GameKey::moveLeft)];
+    delete mGameKeyState[static_cast<int>(GameKey::moveRight)];
 }
 
-void GameKeyboard::changeKeyCode(gameKey key, sf::Keyboard::Key newCode)
+void GameKeyboard::changeKeyCode(GameKey key, sf::Keyboard::Key newCode)
 {
-	mGameKeyMap.setAssociation(key, newCode);
+	mGameKeyState[static_cast<int>(key)]->changeKeyCode(newCode);
 }
 
 void GameKeyboard::update()
 {
-    mPauseManager.update();
-    mAcceptManager.update();
-	mRefuseManager.update();
-	mMoveUpManager.update();
-	mMoveDownManager.update();
-	mMoveLeftManager.update();
-	mMoveRightManager.update();
+    mGameKeyState[static_cast<int>(GameKey::pause)]->update();
+    mGameKeyState[static_cast<int>(GameKey::accept)]->update();
+    mGameKeyState[static_cast<int>(GameKey::refuse)]->update();
+    mGameKeyState[static_cast<int>(GameKey::moveUp)]->update();
+    mGameKeyState[static_cast<int>(GameKey::moveDown)]->update();
+    mGameKeyState[static_cast<int>(GameKey::moveLeft)]->update();
+    mGameKeyState[static_cast<int>(GameKey::moveRight)]->update();
+
+    DPad.update();
 }
+
+GameKeyboard Keyboard;
 
 }

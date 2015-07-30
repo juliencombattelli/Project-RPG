@@ -1,9 +1,10 @@
 #ifndef GAMEKEYBOARD_HPP_INCLUDED
 #define GAMEKEYBOARD_HPP_INCLUDED
 
-#include "GameKeyStateManager.hpp"
-#include "GameKeyMap.hpp"
+#include "GameKeyState.hpp"
+#include "GameDPad.hpp"
 #include <SFML/Window/Keyboard.hpp>
+#include <array>
 
 namespace rpg
 {
@@ -17,27 +18,22 @@ public:
     GameKeyboard& operator=(const GameKeyboard&) = delete;
     ~GameKeyboard();
 
-    void changeKeyCode(gameKey key, sf::Keyboard::Key newCode);
+    void changeKeyCode(GameKey key, sf::Keyboard::Key newCode);
 
 	void update();
 
-	bool isPausePressed() const { return mPauseManager.isPressed(); }
-	bool isPausePressedOnce() const { return mPauseManager.isPressedOnce(); }
-	bool isPausePressedCont() const { return mPauseManager.isPressedCont(); }
+	bool isKeyPressed(const GameKey& gameKey) const { return mGameKeyState[static_cast<int>(gameKey)]->isPressed(); }
+	bool isKeyPressedOnce(const GameKey& gameKey) const { return mGameKeyState[static_cast<int>(gameKey)]->isPressedOnce(); }
+	bool isKeyPressedCont(const GameKey& gameKey) const { return mGameKeyState[static_cast<int>(gameKey)]->isPressedCont(); }
+
+    GameDPad DPad;
 
 private:
 
-    GameKeyMap mGameKeyMap;
-
-    GameKeyStateManager mPauseManager;
-    GameKeyStateManager mAcceptManager;
-	GameKeyStateManager mRefuseManager;
-	GameKeyStateManager mMoveUpManager;
-	GameKeyStateManager mMoveDownManager;
-	GameKeyStateManager mMoveLeftManager;
-	GameKeyStateManager mMoveRightManager;
-
+    std::array<GameKeyState*, static_cast<uint32_t>(GameKey::count)> mGameKeyState;
 };
+
+extern GameKeyboard Keyboard;
 
 }
 

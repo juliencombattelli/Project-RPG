@@ -44,13 +44,13 @@ void Exploration::handleEvent(sf::Event& event)
     else
         mHeros.walk();
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (Keyboard.DPad.isMoveUpPressed())
         mHeros.moveUp();
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (Keyboard.DPad.isMoveDownPressed())
         mHeros.moveDown();
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if (Keyboard.DPad.isMoveLeftPressed())
         mHeros.moveLeft();
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (Keyboard.DPad.isMoveRightPressed())
         mHeros.moveRight();
 }
 

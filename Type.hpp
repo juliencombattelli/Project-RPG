@@ -21,6 +21,19 @@
 namespace rpg
 {
 
+enum class GameKey : int8_t
+{
+	pause = 0,
+	accept,
+	refuse,
+	moveUp,
+	moveDown,
+	moveLeft,
+	moveRight,
+
+	count
+};
+
 enum StateID
 {
     MENU = 0,

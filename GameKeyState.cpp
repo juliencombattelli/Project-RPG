@@ -1,20 +1,20 @@
-#include "GameKeyStateManager.hpp"
+#include "GameKeyState.hpp"
 
 namespace rpg
 {
 
-GameKeyStateManager::GameKeyStateManager(sf::Keyboard::Key key) :
+GameKeyState::GameKeyState(sf::Keyboard::Key key) :
 m_key(key), m_keyPressed(false), m_keyPressedOnce(false), m_keyPressedCont(false), m_state(keyNoPressed)
 {
 
 }
 
-GameKeyStateManager::~GameKeyStateManager()
+GameKeyState::~GameKeyState()
 {
 
 }
 
-void GameKeyStateManager::update()
+void GameKeyState::update()
 {
 	m_keyPressedOnce = false;
 	m_keyPressedCont = false;

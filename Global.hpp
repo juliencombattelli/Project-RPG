@@ -2,6 +2,7 @@
 #define GLOBAL_HPP
 
 #include "utilities.hpp"
+#include "GameKeyboard.hpp"
 #include <iostream>
 
 // Folders name

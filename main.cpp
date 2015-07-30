@@ -168,7 +168,6 @@ int main(int argc, char* argv[])
 
 #include <iostream>
 #include "Application.hpp"
-#include "GameKeyStateManager.hpp"
 
 int main()
 {

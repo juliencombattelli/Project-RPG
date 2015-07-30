@@ -2,6 +2,7 @@
 #define APPLICATION_HPP_INCLUDED
 
 #include "Type.hpp"
+#include "GameKeyboard.hpp"
 #include "StateManager.hpp"
 #include "EventManager.hpp"
 #include "LogManager.hpp"

@@ -1,7 +1,6 @@
 #include "StateManager.hpp"
 #include "State.hpp"
 #include "Exploration.hpp"
-#include <memory>
 
 namespace rpg
 {

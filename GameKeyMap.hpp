@@ -1,25 +1,13 @@
 #ifndef GAMEKEYMAP_HPP_INCLUDED
 #define GAMEKEYMAP_HPP_INCLUDED
 
+#include "Type.hpp"
 #include <SFML/Window/Keyboard.hpp>
 #include <string>
-#include <map>
+#include <array>
 
 namespace rpg
 {
-
-enum class gameKey : int8_t
-{
-	pause = 0,
-	accept,
-	refuse,
-	moveUp,
-	moveDown,
-	moveLeft,
-	moveRight,
-
-	count
-};
 
 class GameKeyMap
 {
@@ -30,12 +18,13 @@ public:
     GameKeyMap& operator=(const GameKeyMap&) = delete;
     ~GameKeyMap();
 
-    sf::Keyboard::Key operator[](const gameKey& key);// getter
+    sf::Keyboard::Key operator[](const GameKey& key);// getter
 
-    void setAssociation(const gameKey& gamekey, const sf::Keyboard::Key& key);
+    void setAssociation(const GameKey& gameKey, const sf::Keyboard::Key& key);
 
 private:
-    std::map<gameKey, sf::Keyboard::Key> mGameKeysMap;
+
+    std::array<sf::Keyboard::Key, static_cast<size_t>(GameKey::count)> mKeyAssociation;
 };
 
 }

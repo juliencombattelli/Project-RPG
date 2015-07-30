@@ -150,12 +150,8 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="GameKeyMap.cpp" />
-		<Unit filename="GameKeyMap.hpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="GameKeyStateManager.cpp" />
-		<Unit filename="GameKeyStateManager.hpp">
+		<Unit filename="GameKeyState.cpp" />
+		<Unit filename="GameKeyState.hpp">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>

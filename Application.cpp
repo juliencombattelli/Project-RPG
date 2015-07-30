@@ -109,6 +109,8 @@ void Application::gameLoop()
     {
         State& state = mStateManager.getActiveState();
 
+        Keyboard.update();
+
         handleEvent(state);
 
         state.update(frameClock.restart().asSeconds());
